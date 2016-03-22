@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Heroic Imagery
  * Plugin URI:        https://github.com/AdyCastEX/heroic_imagery
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Provides an interface to easily create hero images through the wordpress admin area.
  * Version:           1.0.0
  * Author:            Carl Adrian P. Castueras
  * Author URI:        https://github.com/AdyCastEX

@@ -99,5 +99,33 @@ class Heroic_Imagery_Admin {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/heroic-imagery-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
+	
+	public function add_plugin_admin_menu(){
+		//creates the top level menu for the plugin
+		add_menu_page(' Heroic Imagery ',' Heroic Imagery ','manage_options',$this->plugin_name,array($this,'display_plugin_setup_page'));
+		//creates a submenu for the hero image library, set the slug to be the same as the parent so that clicking the submenu leads to the main menu page
+		add_submenu_page($this->plugin_name,' Hero Image Library ',' Library ','manage_options',$this->plugin_name,array($this,'display_plugin_setup_page'));
+		//creates a submenu for creating a new hero image
+		add_submenu_page($this->plugin_name,' Create New Hero Image ',' Add New ','manage_options',$this->plugin_name.'-add-new',array($this,'display_add_new_page'));
+
+	}
+	
+	public function add_action_links($links){
+		$settings_link = array(
+			'<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_name ) . '">' . __('Settings',$this->plugin_name) . '</a>', 	
+		);
+		
+		return array_merge($settings_link,$links);
+	}
+	
+	public function display_plugin_setup_page(){
+		//render the partial/template for the main admin display (hero image library)
+		include_once('partials/heroic-imagery-admin-display.php');
+	}
+	
+	public function display_add_new_page(){
+		//render the partial/template for the add new hero image display
+		include_once('partials/heroic-imagery-admin-add-new.php');
+	}
 
 }
